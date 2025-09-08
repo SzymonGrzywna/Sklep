@@ -12,10 +12,11 @@ def wczytaj_float(tekst):
         return None
 
 
-
+# ===== START – wczytanie z plików =====
 stan_konta = wczytaj_konto()
 magazyn = wczytaj_magazyn()
-historia = wczytaj_historie()
+historia = wczytaj_historie()  # lista stringów
+
 
 def pokaz_menu():
     print()
@@ -102,11 +103,10 @@ while True:
             print("Brak wystarczającej ilości produktu.")
             continue
 
-
+        # operacje
         produkt["ilosc_dostepna"] -= ilosc_produktu
         przychod = produkt["cena_produktu"] * ilosc_produktu
         stan_konta += przychod
-
 
         zapisz_magazyn(magazyn)
         zapisz_konto(stan_konta)
@@ -134,7 +134,8 @@ while True:
             continue
 
         koszt = cena * ilosc
-        if koszt > stan_konta:
+        jeśli_za_malo = (koszt > stan_konta)
+        if jeśli_za_malo:
             print("Nie masz tyle środków na koncie.")
             continue
 
@@ -151,7 +152,6 @@ while True:
 
         stan_konta -= koszt
 
-        # persist
         zapisz_magazyn(magazyn)
         zapisz_konto(stan_konta)
         linia_hist = f"zakup;{wybrany_produkt};{cena};{ilosc}"
