@@ -1,0 +1,5 @@
+saldo;1.0
+saldo;1000.0
+zakup;DONICZKA;4.99;5
+saldo;-200.0
+zakup;KURS_PYTHON;9.99;9
